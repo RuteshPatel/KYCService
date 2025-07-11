@@ -18,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(kyc_routers)
+app.include_router(kyc_routers, prefix="/api/kyc")
 
 if __name__ == "__main__":
     uvicorn.run(
