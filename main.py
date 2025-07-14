@@ -1,8 +1,12 @@
+import os
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
 from surpass_apis.routers import router as kyc_routers
+load_dotenv()
 
 app = FastAPI(
     title="True Pay",
@@ -23,8 +27,9 @@ app.include_router(kyc_routers, prefix="/api/kyc")
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
-        host="localhost",
-        port=8002,
+        host=os.getenv("HOST_URL"),
+        port=int(os.getenv("HOST_PORT")),
         log_level="info",
         reload=True
     )
+
