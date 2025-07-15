@@ -10,6 +10,7 @@ load_dotenv()
 
 app = FastAPI(
     title="True Pay",
+    root_path="/api/kyc",
     docs_url="/docs",
     redoc_url="/redoc",
 )
@@ -22,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(kyc_routers, prefix="/api/kyc")
+app.include_router(kyc_routers)
 
 if __name__ == "__main__":
     uvicorn.run(
